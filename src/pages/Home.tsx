@@ -57,7 +57,7 @@ export default function Home() {
           </Reveal>
           <ol className="mini-steps">
             {journeySteps.map((s, i) => (
-              <li key={s.title} data-reveal="scale" style={{ ['--d' as string]: `${(i % 4) * 90}ms` }}><span>{i + 1}</span><strong>{s.title}</strong><em>{s.short}</em></li>
+              <li key={s.title} data-reveal="up" style={{ ['--d' as string]: `${(i % 4) * 60}ms` }}><span>{i + 1}</span><strong>{s.title}</strong><em>{s.short}</em></li>
             ))}
           </ol>
           <p className="center" data-reveal="up"><Link to="/journey" className="btn btn-primary">See the full journey</Link></p>
@@ -66,10 +66,10 @@ export default function Home() {
 
       <section className="section" aria-labelledby="coach-heading">
         <div className="container coach-grid">
-          <div data-reveal="left">
+          <div data-reveal="up">
             <ImageSlot src={coach.photo || undefined} alt={`Portrait of ${coach.name}, ${coach.role}`} label="Photo of Mrigank Kohli coming soon" ratio="4 / 5" />
           </div>
-          <div data-reveal="right">
+          <div data-reveal="up">
             <p className="eyebrow">Your career coach</p>
             <h2 id="coach-heading">{coach.name}</h2>
             <p className="lead">Guidance from someone who has been through it: {coach.name} studied in Germany and has lived and worked there for around {coach.yearsInGermany} years.</p>
@@ -89,7 +89,7 @@ export default function Home() {
         <div className="container narrow">
           <Reveal><h2>Questions families ask</h2></Reveal>
           {faqs.slice(0, 3).map((f) => (
-            <details key={f.q} className="faq" data-reveal="left"><summary>{f.q}</summary><p>{f.a}</p></details>
+            <details key={f.q} className="faq" data-reveal="up"><summary>{f.q}</summary><p>{f.a}</p></details>
           ))}
           <p><Link to="/faq">More questions →</Link></p>
         </div>

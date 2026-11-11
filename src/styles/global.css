@@ -151,10 +151,7 @@ input[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: #b3261
 .site-header.is-scrolled { box-shadow: 0 6px 24px rgba(17,35,60,.08); }
 
 /* scroll reveal (driven by Layout; variants via data-reveal) */
-[data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms); will-change: opacity, transform; }
-[data-reveal='left'] { transform: translateX(-36px); }
-[data-reveal='right'] { transform: translateX(36px); }
-[data-reveal='scale'] { transform: scale(.92); }
+[data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms); will-change: opacity, transform; }
 [data-reveal].in { opacity: 1; transform: none; }
 .card[data-reveal] { transition: opacity .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), box-shadow .25s; }
 .card.done { transition: transform .25s, box-shadow .25s; }
@@ -182,7 +179,7 @@ input[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: #b3261
 .img-placeholder { display: grid; place-items: center; background: repeating-linear-gradient(45deg, var(--tint), var(--tint) 12px, #ebe5d6 12px, #ebe5d6 24px); color: var(--muted); font-size: .9rem; text-align: center; padding: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal], [data-reveal='left'], [data-reveal='right'], [data-reveal='scale'] { opacity: 1; transform: none; }
+  [data-reveal] { opacity: 1; transform: none; }
   .hero-grid > div > *, .hero-art { opacity: 1; transform: none; }
 }
 

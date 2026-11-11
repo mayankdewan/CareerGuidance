@@ -5,7 +5,7 @@ export default function ServiceCards({ detailed = false }: { detailed?: boolean 
   return (
     <div className="cards">
       {services.map((s, i) => (
-        <article key={s.id} className="card" id={s.id} data-reveal="up" style={{ ['--d' as string]: `${i * 120}ms` }}>
+        <article key={s.id} className="card" id={s.id} data-reveal="up" style={{ ['--d' as string]: `${i * 80}ms` }}>
           <span className="card-num">0{i + 1}</span>
           <h3>{s.title}</h3>
           <p>{s.summary}</p>

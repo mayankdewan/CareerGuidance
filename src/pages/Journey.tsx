@@ -42,7 +42,7 @@ export default function Journey() {
           {journeySteps.map((s, i) => (
             <li key={s.title} data-i={i} ref={(el) => { refs.current[i] = el }} className={i === active ? 'step is-active' : 'step'}>
               <span className="step-dot" aria-hidden="true">{i + 1}</span>
-              <div className="step-body" data-reveal={i % 2 ? 'right' : 'left'}>
+              <div className="step-body" data-reveal="up">
                 <p className="eyebrow">Step {i + 1}</p>
                 <h2>{s.title}</h2>
                 <p>{s.body}</p>

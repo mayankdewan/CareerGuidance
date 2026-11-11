@@ -4,6 +4,7 @@ import { disclaimer, site } from '../data/site'
 import Logo from './Logo'
 
 const nav = [
+  { to: '/', label: 'Home' },
   { to: '/journey', label: 'The Journey' },
   { to: '/services', label: 'Services' },
   { to: '/faq', label: 'FAQ' },
@@ -56,7 +57,7 @@ export default function Layout() {
             {open ? 'Close' : 'Menu'}
           </button>
           <nav id="primary-nav" className={open ? 'nav is-open' : 'nav'} aria-label="Primary" onClick={() => setOpen(false)}>
-            {nav.map((n) => <NavLink key={n.to} to={n.to}>{n.label}</NavLink>)}
+            {nav.map((n) => <NavLink key={n.to} to={n.to} end={n.to === '/'}>{n.label}</NavLink>)}
             <Link to="/contact" className="btn btn-primary btn-sm">Get Guidance</Link>
           </nav>
         </div>

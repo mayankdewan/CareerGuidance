@@ -16,7 +16,7 @@ export default function Faq() {
       <section className="section">
         <div className="container narrow">
           {faqs.map((f) => (
-            <details key={f.q} className="faq" data-reveal="left">
+            <details key={f.q} className="faq" data-reveal="up">
               <summary>{f.q} <span className={`tag tag-${f.type}`}>{f.type === 'official' ? 'Official rules' : 'General guidance'}</span></summary>
               <p>{f.a}</p>
             </details>
