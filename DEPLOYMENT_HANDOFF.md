@@ -7,12 +7,13 @@ Nothing has been deployed, purchased or registered. Every step below is for the 
 | Setting | Value |
 | --- | --- |
 | Framework preset | None / Vite |
-| Root directory | `web` |
+| Root directory | `/` (repo root) |
+| Deploy command (only if shown) | `npx wrangler deploy` |
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Node version | 20 (set `NODE_VERSION=20` if needed) |
 
-SPA routing: `web/public/_redirects` (`/* /index.html 200`) is copied into `dist`. Direct navigation to `/journey`, `/services`, `/contact`, `/faq` and `/privacy` returned 200 in a local preview of the production build. Re-test on the live domain.
+SPA routing: `wrangler.jsonc` sets `not_found_handling: single-page-application`, so unknown paths serve `index.html`. Direct navigation to `/journey`, `/services`, `/contact`, `/faq` and `/privacy` returned 200 in a local preview of the production build. Re-test on the live domain.
 
 ## Environment variables (Cloudflare Pages → Settings → Variables)
 
@@ -24,7 +25,7 @@ SPA routing: `web/public/_redirects` (`/* /index.html 200`) is copied into `dist
 - [ ] Business name, logo, brand colours (current navy/gold is a placeholder palette)
 - [ ] Contact email, WhatsApp/phone
 - [ ] Legal entity name and address (footer, privacy policy)
-- [ ] Confirmed inclusions for the three services (`web/src/data/services.ts`)
+- [ ] Confirmed inclusions for the three services (`src/data/services.ts`)
 - [ ] Privacy policy review: legal basis, processors, retention period, rights
 - [ ] Optional: founder/team details for an About page; owner-supplied photos
 - [ ] Re-verify official links in `journey.ts` and `site.ts`
@@ -50,7 +51,7 @@ Setup guide: https://help.formspree.io/hc/en-us/articles/46614263949331-Protecti
 
 1. Buy the domain (owner).
 2. Cloudflare Pages project → Custom domains → add the domain and follow the DNS instructions shown.
-3. After the domain is live: add `og:url`/`og:image` to `web/index.html`, create `web/public/sitemap.xml`, and add the `Sitemap:` line to `web/public/robots.txt`.
+3. After the domain is live: add `og:url`/`og:image` to `index.html`, create `public/sitemap.xml`, and add the `Sitemap:` line to `public/robots.txt`.
 
 ## Live test checklist
 

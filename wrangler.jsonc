@@ -1,0 +1,10 @@
+{
+  // Cloudflare static-assets deploy for the built site (used by `npx wrangler deploy`).
+  "name": "careerguidance",
+  "compatibility_date": "2025-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Serves index.html for unknown paths so /journey, /contact etc. work on refresh.
+    "not_found_handling": "single-page-application"
+  }
+}

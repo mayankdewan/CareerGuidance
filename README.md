@@ -92,9 +92,8 @@ If `VITE_FORMSPREE_ENDPOINT` is missing, the form shows a "not configured" error
 ## Project structure
 
 ```
-web/
+./
 ├─ public/
-│  ├─ _redirects          SPA fallback for Cloudflare Pages (/* -> /index.html 200)
 │  ├─ favicon.svg
 │  └─ robots.txt
 ├─ src/
@@ -120,6 +119,7 @@ web/
 ├─ index.html
 ├─ .env.example
 ├─ vite.config.ts · tsconfig.json · eslint.config.js
+├─ wrangler.jsonc         Cloudflare static-assets config (SPA fallback)
 ├─ README.md
 └─ DEPLOYMENT_HANDOFF.md
 ```
@@ -136,7 +136,7 @@ web/
 | `/privacy` | Privacy Policy |
 | `*` | Not found |
 
-Direct navigation and refresh work on Cloudflare Pages through `public/_redirects`.
+Direct navigation and refresh work on Cloudflare through `not_found_handling: single-page-application` in `wrangler.jsonc`.
 
 ## Editing content
 
@@ -206,9 +206,10 @@ Cloudflare Pages settings:
 
 | Setting | Value |
 | --- | --- |
-| Root directory | `web` |
+| Root directory | `/` (repo root) |
 | Build command | `npm run build` |
 | Build output directory | `dist` |
+| Deploy command (Workers-style projects) | `npx wrangler deploy` (reads `wrangler.jsonc`) |
 | Node version | 20 |
 
 Add the environment variables above, deploy, then work through the live test checklist in [DEPLOYMENT_HANDOFF.md](./DEPLOYMENT_HANDOFF.md). It also covers the Formspree and Turnstile setup, domain and DNS steps, and the inputs the owner still needs to provide.
