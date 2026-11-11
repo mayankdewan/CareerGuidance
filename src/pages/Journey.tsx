@@ -5,7 +5,7 @@ import { officialSources } from '../data/site'
 import { useSeo } from '../lib/seo'
 
 export default function Journey() {
-  useSeo('Study in Germany: The Journey', 'A step-by-step guide to the journey to higher education in Germany, with links to official sources.')
+  useSeo('/journey')
   const [active, setActive] = useState(0)
   const refs = useRef<(HTMLElement | null)[]>([])
 

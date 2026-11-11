@@ -5,7 +5,7 @@ import { useSeo } from '../lib/seo'
 export default function Privacy() {
   const fromForm = (useLocation().state as { fromForm?: boolean } | null)?.fromForm
   const navigate = useNavigate()
-  useSeo('Privacy Policy', 'How enquiry information submitted through this website is used and protected.')
+  useSeo('/privacy')
   return (
     <section className="page-head">
       <div className="container narrow prose" data-reveal="up">

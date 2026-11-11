@@ -3,7 +3,7 @@ import { disclaimer } from '../data/site'
 import { useSeo } from '../lib/seo'
 
 export default function Services() {
-  useSeo('Services', 'Three ways to get support: study guidance, full end-to-end support, or help with job documentation for Germany.')
+  useSeo('/services')
   return (
     <>
       <section className="page-head">

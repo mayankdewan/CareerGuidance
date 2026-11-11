@@ -8,7 +8,7 @@ import { coach, disclaimer } from '../data/site'
 import { useSeo } from '../lib/seo'
 
 export default function Home() {
-  useSeo('Study in Germany: Guidance for Families and Students', 'Clear, honest guidance on the journey to higher education in Germany, for students and parents.')
+  useSeo('/')
   return (
     <>
       <section className="hero">

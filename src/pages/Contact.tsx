@@ -4,7 +4,7 @@ import { site } from '../data/site'
 import { useSeo } from '../lib/seo'
 
 export default function Contact() {
-  useSeo('Enquiry and Contact', 'Send an enquiry about studying in Germany or job documentation. Choose a service and tell us how we can help.')
+  useSeo('/contact')
   const [params] = useSearchParams()
   const service = params.get('service')
   return (

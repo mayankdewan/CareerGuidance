@@ -70,7 +70,7 @@ Vite reads `.env` only at startup, so restart the dev server after changing it.
 | Command | What it does |
 | --- | --- |
 | `npm run dev` | Start the dev server |
-| `npm run build` | Typecheck, then build to `dist/` |
+| `npm run build` | Typecheck, build to `dist/`, then prerender per-route HTML, sitemap, robots.txt and llms.txt |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run `tsc --noEmit` |
@@ -180,9 +180,26 @@ There is no verified per-IP rate limit in this app. Do not claim one unless you 
 
 ## SEO
 
-- Each page sets its own title and meta description (`src/lib/seo.ts`), plus Open Graph title and description.
-- `public/robots.txt` allows crawling.
-- Still to add once the domain is known: `sitemap.xml`, the `Sitemap:` line in `robots.txt`, `og:url` and `og:image`.
+What is in place:
+
+- **Per-page meta** from `src/data/seo.ts`: title, description, keywords, robots, author, Open Graph and Twitter tags, and a canonical URL.
+- **Structured data (JSON-LD)** from `src/lib/jsonld.ts`, using only facts already on the site: `WebSite`, `Organization`, `Person` (career coach, home page), `ItemList` of `Service` (services page), `FAQPage` (FAQ page) and `BreadcrumbList`. There are no invented ratings, prices, reviews or awards.
+- **Static HTML per route.** `npm run build` runs `scripts/prerender.ts` after Vite. It writes `dist/<route>/index.html` with that page's real head tags, JSON-LD and a `<noscript>` text version of the content, so crawlers that do not run JavaScript (many AI crawlers) can read each page.
+- **`robots.txt`** generated at build: allows search and AI crawlers (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and others) and adds the `Sitemap:` line.
+- **`sitemap.xml`** generated at build when `VITE_SITE_URL` is set.
+- **`llms.txt`** generated at build: a plain summary of the site for AI assistants.
+- Semantic headings, descriptive link text, image alt text, mobile-first and light pages.
+
+Build variables:
+
+| Variable | Effect |
+| --- | --- |
+| `VITE_SITE_URL` | Public address with no trailing slash. Enables canonical URLs, `og:url`, the sitemap and absolute URLs in structured data. Without it these are skipped |
+| `VITE_NOINDEX` | `true` asks search engines not to index the deployment and disallows crawling in `robots.txt`. Use while the site still has placeholders |
+
+Optional image: add a 1200x630 PNG at `public/og-image.png`. If it exists and `VITE_SITE_URL` is set, it is used as `og:image` and `twitter:image`.
+
+No one can guarantee rankings or AI citations. These steps make the site easy to crawl, understand and quote accurately; visibility still depends on real content, links and time.
 
 ## Testing
 
@@ -224,5 +241,5 @@ The site sets no tracking cookies and uses no analytics by default. Enquiries pa
 - The logo is an original placeholder mark.
 - The career coach section uses only facts supplied by the owner; the photo is a placeholder until provided. Confirm that naming the listed employers publicly is acceptable.
 - Official links were not re-verified at build time; check them before launch.
-- No About page, sitemap or Open Graph image yet.
+- No About page or Open Graph image yet.
 - Nothing has been purchased, registered or deployed on the owner's behalf.

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useSeo } from '../lib/seo'
 
 export default function NotFound() {
-  useSeo('Page not found', 'This page could not be found.')
+  useSeo('*')
   return (
     <section className="page-head">
       <div className="container narrow">

@@ -17,6 +17,8 @@ SPA routing: `wrangler.jsonc` sets `not_found_handling: single-page-application`
 
 ## Environment variables (Cloudflare Pages → Settings → Variables)
 
+- `VITE_SITE_URL` = your public address with no trailing slash, e.g. `https://yourproject.pages.dev` (enables canonical URLs and the sitemap)
+- `VITE_NOINDEX` = `true` while testing with placeholders (blocks indexing); remove or set `false` at launch
 - `VITE_TURNSTILE_SITE_KEY` = Turnstile site key (optional, public)
 - `VITE_FORMSPREE_ENDPOINT` = your Formspree form URL (`https://formspree.io/f/...`). This is public, not a secret. It is baked in at build time, so redeploy after changing it.
 
@@ -51,7 +53,7 @@ Setup guide: https://help.formspree.io/hc/en-us/articles/46614263949331-Protecti
 
 1. Buy the domain (owner).
 2. Cloudflare Pages project → Custom domains → add the domain and follow the DNS instructions shown.
-3. After the domain is live: add `og:url`/`og:image` to `index.html`, create `public/sitemap.xml`, and add the `Sitemap:` line to `public/robots.txt`.
+3. After the domain is live: set `VITE_SITE_URL` to it and redeploy. The build then generates canonical tags, `sitemap.xml`, the `Sitemap:` line in `robots.txt` and `llms.txt` automatically.
 
 ## Live test checklist
 
@@ -64,3 +66,13 @@ Setup guide: https://help.formspree.io/hc/en-us/articles/46614263949331-Protecti
 - [ ] Reduced-motion setting disables animation
 - [ ] Disclaimer visible in the footer and hero; all placeholders replaced (`[` brackets and `TODO(owner)` are gone)
 - [ ] Official links open the correct sites
+
+## Search and AI visibility checklist (at launch)
+
+- [ ] Replace every placeholder (`[Business Name]`, contact details) and set `VITE_NOINDEX` to `false`
+- [ ] Set `VITE_SITE_URL` and redeploy; check `/sitemap.xml`, `/robots.txt` and `/llms.txt` load
+- [ ] Add `public/og-image.png` (1200x630) and redeploy
+- [ ] Add the site to Google Search Console and Bing Webmaster Tools, verify ownership and submit `sitemap.xml`
+- [ ] Test pages with Google's Rich Results Test (FAQ, breadcrumbs) and a social share preview
+- [ ] View page source of `/journey` and `/faq` to confirm each has its own title, canonical and structured data
+- [ ] Keep content original and accurate; rankings and AI citations cannot be guaranteed

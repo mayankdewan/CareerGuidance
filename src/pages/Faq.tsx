@@ -3,7 +3,7 @@ import { faqs } from '../data/faq'
 import { useSeo } from '../lib/seo'
 
 export default function Faq() {
-  useSeo('FAQ', 'Practical answers for parents and students about studying in Germany, separating general guidance from official rules.')
+  useSeo('/faq')
   return (
     <>
       <section className="page-head">
